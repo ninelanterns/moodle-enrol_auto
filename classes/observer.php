@@ -71,7 +71,14 @@ class observer {
             return;
         }
 
-        if (!$DB->record_exists('user_enrolments', array('enrolid' => $instance->id, 'userid' => $eventdata['userid']))) {
+        if (!$DB->record_exists_sql('
+            SELECT ue.*
+              FROM {user_enrolments} ue
+              JOIN {enrol} e
+                ON ue.enrolid = e.id
+             WHERE ue.userid = :userid
+               AND e.courseid = :courseid
+        ', array('courseid' => $eventdata['courseid'], 'userid' => $eventdata['userid']))) {
             $autoplugin->enrol_user($instance, $eventdata['userid'], $instance->roleid);
 
             if ($instance->customint2) {
