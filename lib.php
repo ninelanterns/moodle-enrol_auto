@@ -187,7 +187,7 @@ class enrol_auto_plugin extends enrol_plugin {
      * @param stdClass $instance course enrol instance
      * @return bool|int false means not enrolled, integer means timeend
      */
-    public function try_autoenrol(stdClass $instance) {
+    public function try_autoenrol(stdClass $instance, bool $preventredirect = true) {
         global $USER, $DB;
 
         if ($instance->customint3 != ENROL_AUTO_COURSE_VIEWED) {
