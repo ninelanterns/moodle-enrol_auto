@@ -28,5 +28,4 @@ $plugin->version   = 2018032501;        // The current plugin version (Date: YYY
 $plugin->requires  = 2016120500;        // Requires this Moodle version
 $plugin->component = 'enrol_auto';      // Full name of the plugin (used for diagnostics)
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release = 'melodie-r1';
-
+$plugin->release = \local_core\ComposerPluginInfo::getInstance()->getInstalledPluginVersion('pluginname');
